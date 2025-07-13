@@ -18,7 +18,7 @@ class CompanyController extends Controller
        return view('add_company');
     }
 
-     public function update_Company($id){
+     public function update_company($id){
       // dd(url());
          // dd($id);
        $companyDetails = Company::find($id);
