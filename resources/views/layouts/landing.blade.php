@@ -206,7 +206,7 @@
                            <a class='nav-link @yield("active-company") text-light' style="margin-right:25px" href="{{route('company')}}">Company</a>
                         </li>
                          <li class="nav-item">
-                           <a class='nav-link @yield("active-contact") text-light' style="margin-right:25px" href="#">Contact</a>
+                           <a class='nav-link @yield("active-contact-detail") text-light' style="margin-right:25px" href="{{route('contact_detail')}}">Contact</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle text-light @yield('active-dashboard')" href="#" id="navbarDropdown" style="margin-right:25px" role="button" data-bs-toggle="dropdown" aria-expanded="false">

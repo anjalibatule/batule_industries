@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CourseController;
+
 
 
 // Route::get('/', function () {
@@ -44,10 +46,19 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add_company/store_company_details',[CompanyController::class,'store_company_details'])->name('store_company_details');
         Route::post('/update_company/{id}/update_company_details',[CompanyController::class,'update_company_details'])->name('update_company_details');
 
-//      
-
-
+       //contact detail      
+        Route::get('contact_detail',[ViewController::class,'contact_detail'])->name('contact_detail');
+       Route::put('contact_detail/{id}/contact_update',[ViewController::class,'contact_update'])->name('contact_update');
 });
+
+
+
+// course
+Route::get('/course',[CourseController::class,'course'])->name('course');
+Route::get('/course_details/{id}',[CourseController::class,'course_details'])->name('course_details');
+
+
+
 
 
 
