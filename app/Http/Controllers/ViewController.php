@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use  App\Models\User;
 use  App\Models\Company;
 use App\Models\Contact;
+use App\Models\Invoice;
+
 
 use Illuminate\Http\Request;
 // use count;
@@ -18,6 +20,22 @@ class ViewController extends Controller
      public function index()
     {
         return view('index');
+    }
+      public function sale()
+    {
+          return view('sale');
+    }
+     public function add_invoice()
+    {
+         // Fetch the latest invoice
+         $lastInvoice = Invoice::orderBy('id', 'desc')->first();
+
+        // If an invoice exists, increment its number; otherwise, start with 1
+         $invoice_number = $lastInvoice ? $lastInvoice->invoice_number + 1 : 1;
+        //   dd($invoice_number);
+          $Company = Company::all();
+        
+          return view('add_invoice',['invoice_number'=>$invoice_number,'Compy'=>$Company]);
     }
 
     public function search_name(Request $request)

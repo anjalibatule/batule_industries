@@ -3,7 +3,7 @@
 @section('active-company','active')
 @section('content')
 
-           <div class="row">
+      <div class="row">
         <div class="col">
              <h2 class="text-primary">Company Details</h2>
         </div>
@@ -34,6 +34,7 @@
                         <th>Company Email</th>
                         <th>Mobile Number</th>
                         <th>Company Address</th>
+                          <th>State</th>
                         <th>GST Number</th>
                         <th>Date</th>
                         <th>Status</th>
@@ -47,6 +48,7 @@
                         <td>{{$com->company_email}}</td>
                         <td>{{$com->company_mobile}}</td>
                         <td>{{$com->company_address}}</td>
+                        <td>{{$com->state}}</td>
                         <td>{{$com->gst_no}}</td>
                         <td>{{$com->date}}</td>
                        

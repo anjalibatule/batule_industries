@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\CourseController;
+// use App\Http\Controllers\CourseController;
 
 
 
@@ -49,6 +49,12 @@ Route::middleware(['auth'])->group(function () {
        //contact detail      
         Route::get('contact_detail',[ViewController::class,'contact_detail'])->name('contact_detail');
        Route::put('contact_detail/{id}/contact_update',[ViewController::class,'contact_update'])->name('contact_update');
+
+       //sale
+       Route::get('sale',[ViewController::class,'sale'])->name('sale');
+       Route::get('add_invoice',[ViewController::class,'add_invoice'])->name('add_invoice');
+
+
 });
 
 
