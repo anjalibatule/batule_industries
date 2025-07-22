@@ -33,7 +33,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile Number</th>
-                        <th>Image</th>
+                        <th>Profile</th>
                         <th>Role</th>
 
                     </tr>

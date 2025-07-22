@@ -44,12 +44,12 @@ class CompanyController extends Controller
     
       $request->validate([
            'companyName' => 'required|max:200',
-    'companyEmail' => 'required|email',
-    'mob' => 'required',
-    'companyAddress' => 'required|string',
-    'gstNo' => 'required|string',
-    'date' => 'required|date',
-    'status' => 'required|in:1,0',
+      'companyEmail' => 'required|email',
+      'mob' => 'required',
+      'companyAddress' => 'required|string',
+      'gstNo' => 'required|string',
+      'date' => 'required|date',
+   
       ]);
        
       $com = new Company();
@@ -59,7 +59,8 @@ class CompanyController extends Controller
      $com->company_address = $request->companyAddress;
      $com->gst_no = $request->gstNo;
      $com->date = $request->date;
-      $com->status = $request->status; 
+      $com->state = $request->state;
+      $com->status = '1' ; 
       if($com->save()){
          return back()->with('success','Company details added successfully!');
       }

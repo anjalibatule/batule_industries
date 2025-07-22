@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CompanyController;
-// use App\Http\Controllers\CourseController;
+use App\Http\Controllers\InvoiceController;
 
 
 
@@ -53,6 +53,11 @@ Route::middleware(['auth'])->group(function () {
        //sale
        Route::get('sale',[ViewController::class,'sale'])->name('sale');
        Route::get('add_invoice',[ViewController::class,'add_invoice'])->name('add_invoice');
+       Route::post('add_invoice/store_invoice',[InvoiceController::class,'store_invoice'])->name('store_invoice');
+       Route::get('/get-company/{id}', [InvoiceController::class, 'getCompany'])->name('getCompany');
+        Route::get('search_invoice_number',[ViewController::class,'search_invoice_number'])->name('search_invoice_number');
+         Route::get('invoice_update/{id}',[ViewController::class,'invoice_update'])->name('invoice_update');
+         Route::put('invoice_update/{id}/store_update_invoice',[InvoiceController::class,'store_update_invoice'])->name('store_update_invoice');
 
 
 });

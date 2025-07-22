@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- jQuery (Google CDN) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      
     <style>
        *{
@@ -300,25 +302,182 @@
          }
       </script>
 
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-  
+   
+
+<script>
+
+$(document).ready(function() {
+    let sellerGST = "27"; // Seller GST state code (e.g., Maharashtra)
+
+    function updateSrNo() {
+        $('#invoice-items tr').each(function(index) {
+            $(this).find('td:first').text(index + 1);
+        });
+    }
+
+    function calculateRow(row) {
+        let qty = parseFloat(row.find('.quant').val()) || 0;
+        let rate = parseFloat(row.find('.unitRate').val()) || 0;
+        let totalTax = qty * rate;
+        let gst = totalTax * 0.18;
+        let totalAmount = totalTax + gst;
+
+        row.find('.totalTax').val(totalTax.toFixed(2));
+        row.find('.gst_18').val(gst.toFixed(2));
+        row.find('.totalAmount').val(totalAmount.toFixed(2));
+    }
+
+    function calculateTotals() {
+        let totalTaxable = 0, totalGST = 0, grandTotal = 0;
+
+        $('#invoice-items .item-row').each(function() {
+            totalTaxable += parseFloat($(this).find('.totalTax').val()) || 0;
+            totalGST += parseFloat($(this).find('.gst_18').val()) || 0;
+            grandTotal += parseFloat($(this).find('.totalAmount').val()) || 0;
+        });
+
+        $('.totalTaxable').val(totalTaxable.toFixed(2));
+        $('.totalAmt').val(grandTotal.toFixed(2));
+
+        let buyerGST = $('#gstNo').val() ||  '';
+        let buyerState = buyerGST.substring(0, 2);
+
+        if (buyerState && buyerState === sellerGST) {
+            $('.cgst').val((totalGST / 2).toFixed(2));
+            $('.sgst').val((totalGST / 2).toFixed(2));
+            $('.igst').val(0);
+        } else {
+            $('.cgst').val(0);
+            $('.sgst').val(0);
+            $('.igst').val(totalGST.toFixed(2));
+        }
+    }
+
+    $('#add-item').click(function() {
+         let newRow = $('#invoice-items .item-row:first').clone();
+        newRow.find('textarea, input').each(function() {
+            $(this).val('');
+        });
+        newRow.find('.quant').val(1);
+        newRow.find('.unitRate').val(100.00);
+        newRow.find('.totalTax').val();
+        newRow.find('.gst_18').val();
+        newRow.find('.totalAmount').val();
+        $('#invoice-items').append(newRow);
+        updateSrNo();
+    
+    });
+
+    $(document).on('click', '.remove-item', function() {
+        if ($('#invoice-items .item-row').length > 1) {
+            $(this).closest('tr').remove();
+            updateSrNo();
+            calculateTotals();
+        } else {
+            alert('At least one row is required.');
+        }
+    });
+
+    // Input events
+    $(document).on('input', '.quant, .unitRate, #gstNo', function() {
+        let row = $(this).closest('tr');
+        if (row.hasClass('item-row')) calculateRow(row);
+        calculateTotals();
+    });
+
+    // Company dropdown AJAX
+    $('#company').on('change', function () {
+        let companyId = $(this).val();
+        if (companyId != 0) {
+            $.ajax({
+                url: "{{ url('get-company') }}/" + companyId,
+                type: 'GET',
+                success: function (response) {
+                    if (response.status) {
+                        let data = response.data;
+
+                        $('#showCompanyName').text(data.company_name);
+                        $('#showCompanyEmail').text(data.company_email);
+                        $('#showCompanyMobile').text(data.company_mobile);
+                        $('#showCompanyAddress').text(data.company_address);
+                        $('#showCompanyState').text(data.state);
+                        $('#showCompanyGST').text(data.gst_no);
+                        $('#gstNo').val(data.gst_no);
+
+                        $('#companyDetailsShow').show();
+                        $('#SelectCompany').hide();
+                        calculateTotals();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert('Something went wrong.');
+                }
+            });
+        } else {
+            $('#companyDetailsShow').hide();
+            $('#SelectCompany').show();
+        }
+    });
+
+    // Initial calculation
+    updateSrNo();
+    calculateRow($('#invoice-items .item-row:first'));
+    calculateTotals();
+});
+    
+</script>
  
+<script>
+$(document).ready(function() {
+   $('#companySelect').on('change', function () {
+        let companyId = $(this).val();
+        if (companyId != 0) {
+            $.ajax({
+                url: "{{ url('get-company') }}/" + companyId,
+                type: 'GET',
+                success: function (response) {
+                    if (response.status) {
+                        let data = response.data;
+
+                        $('#companyName').val(data.company_name);
+                        $('#companyEmail').val(data.company_email);
+                        $('#mob').val(data.company_mobile);
+                        $('#companyAddress').val(data.company_address);
+                        $('#state').val(data.state);
+                        $('#gstNo').val(data.gst_no);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert('Something went wrong.');
+                }
+            });
+        } 
+    });
+    $('#update-item').on('click', function() {
+        let rowCount = $('#invoice-items tr').length + 1;
+
+            let newRow = `
+            <tr class="item-row">
+                <td>${rowCount}</td>
+                <input type="hidden" name="item_id[]" value="">
+                <td><textarea class="form-control descp" name="descp[]" required></textarea></td>
+                <td><input type="text" class="form-control hsnCode" name="hsnCode[]" required></td>
+                <td><input type="number" class="form-control quant" name="quant[]" required></td>
+                <td><input type="number" step="0.01" class="form-control unitRate" name="unitRate[]" required></td>
+                <td><input type="number" step="0.01" class="form-control totalTax" name="totalTax[]" required></td>
+                <td><input type="number" step="0.01" class="form-control gst_18" name="gst_18[]" required></td>
+                <td><input type="number" step="0.01" class="form-control totalAmount" name="totalAmount[]" required></td>
+                <td><button type="button" class="btn btn-danger remove-item">Remove</button></td>
+            </tr>`;
+            $('#invoice-items').append(newRow);
+        
+        });
+});
+</script>
+
 </body>
 </html>
