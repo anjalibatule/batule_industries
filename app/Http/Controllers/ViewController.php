@@ -24,8 +24,31 @@ class ViewController extends Controller
     }
       public function sale()
     {
-          $invoices = Invoice::with('company')->orderBy('invoice_number','desc')->paginate(8);
+          $invoices = Invoice::with('company')->where('status',1)->orderBy('invoice_number','desc')->paginate(8);
           return view('sale',['invoices'=>$invoices]);
+    }
+    public function purchase_order(){
+       return view('purchase_order');
+    }
+     public function status()
+    {
+          $invoices = Invoice::with('company')->where('status',1)->orderBy('invoice_number','desc')->paginate(8);
+          return view('status',['invoices'=>$invoices]);
+    }
+     public function inactive_status()
+    {
+          $invoices = Invoice::with('company')->where('status',0)->orderBy('invoice_number','desc')->paginate(8);
+          return view('inactive_status',['invoices'=>$invoices]);
+    }
+     public function payment()
+    {
+          $invoices = Invoice::with('company')->where('payment',1)->orderBy('invoice_number','desc')->paginate(8);
+          return view('payment',['invoices'=>$invoices]);
+    }
+     public function inactive_payment()
+    {
+          $invoices = Invoice::with('company')->where('payment',0)->orderBy('invoice_number','desc')->paginate(8);
+          return view('inactive_payment',['invoices'=>$invoices]);
     }
      public function add_invoice()
     {
@@ -42,47 +65,9 @@ class ViewController extends Controller
 
     }
 
-    public function search_name(Request $request)
-    {
-    $userData = User::where('name','like',"%$request->search%")
-               ->orwhere('email','like',"%$request->search%")
-               ->orwhere('phone','like',"%$request->search%")
-               ->orwhere('role','like',"%$request->search%")
-               ->orderBy('name', 'asc')
-               ->paginate(5)
-               ->withQueryString();
-            return view('user',['users'=>$userData,'search'=>$request->search]);
-    }   
-     public function search_company_name(Request $request){
-        // dd($request->search);
-        $companyData = Company::where('company_name','like',"%$request->search%")
-        ->orwhere('gst_no','like',"%$request->search%")
-        ->orwhere('state','like',"%$request->search%")
-        ->orwhere('date','like',"%$request->search%")
-        ->orwhere('company_email','like',"%$request->search%")
-        ->orwhere('company_mobile','like',"%$request->search%")
-        ->orwhere('company_address','like',"%$request->search%")
-        ->orderBy('company_name', 'asc')
-        ->paginate(5)
-        ->withQueryString();
-        return view('company',['company'=>$companyData,'search'=>$request->search]);
-    }
-     public function search_invoice_number(Request $request){
-        $search = $request->search;
-       $invoices = Invoice::with('company')
-        ->where('invoice_number', 'like', "%$search%")
-        ->orWhere('invoice_date', 'like', "%$search%")
-        ->orWhere(function ($query) use ($search) {
-            $query->whereHas('company', function ($q) use ($search) {
-                $q->where('company_name', 'like', "%$search%")
-                  ->orWhere('gst_no', 'like', "%$search%");
-            });
-        })
-        ->orderBy('invoice_number', 'desc')
-        ->paginate(5)
-        ->withQueryString();
-        return view('sale',['invoices'=>$invoices,'search'=>$search]);
-    }
+   
+    
+    
       public function contact_detail()
     {
         // dd(1);

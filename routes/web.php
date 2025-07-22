@@ -6,6 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PurchaseController;
+
+
 
 
 
@@ -35,16 +39,20 @@ Route::middleware(['auth'])->group(function () {
        Route::get('/add_user',[UserController::class,'add_user'])->name('add_user');
        Route::post('/add_user/store',[UserController::class,'store_user'])->name('store_user');
         Route::get('/user/update_image/{id}',[UserController::class,'update_image'])->name('update_image');
-       Route::get('search_name',[ViewController::class,'search_name'])->name('search_name');
+       Route::get('search_name',[SearchController::class,'search_name'])->name('search_name');
 
        //company page
         Route::get('/company_details',[CompanyController::class,'getCompanyDetails'])->name('company');
-        Route::get('search_company_name',[ViewController::class,'search_company_name'])->name('search_company_name');
+        Route::get('search_company_name',[SearchController::class,'search_company_name'])->name('search_company_name');
+         Route::get('search_inactive_company_name',[SearchController::class,'search_inactive_company_name'])->name('search_inactive_company_name');
         Route::get('/add_company',[CompanyController::class,'add_company'])->name('add_company');
         Route::get('/update_company/{id}',[CompanyController::class,'update_company'])->name('update_company');
         Route::delete('company_details/delete_company/{id}',[CompanyController::class,'delete_company'])->name('delete_company');
         Route::post('/add_company/store_company_details',[CompanyController::class,'store_company_details'])->name('store_company_details');
         Route::post('/update_company/{id}/update_company_details',[CompanyController::class,'update_company_details'])->name('update_company_details');
+        Route::put('/update_company_status/{id}', [CompanyController::class, 'update_company_status'])->name('update_company_status');
+        Route::get('inactive_company',[CompanyController::class,'inactive_company'])->name('inactive_company');
+
 
        //contact detail      
         Route::get('contact_detail',[ViewController::class,'contact_detail'])->name('contact_detail');
@@ -55,10 +63,25 @@ Route::middleware(['auth'])->group(function () {
        Route::get('add_invoice',[ViewController::class,'add_invoice'])->name('add_invoice');
        Route::post('add_invoice/store_invoice',[InvoiceController::class,'store_invoice'])->name('store_invoice');
        Route::get('/get-company/{id}', [InvoiceController::class, 'getCompany'])->name('getCompany');
-        Route::get('search_invoice_number',[ViewController::class,'search_invoice_number'])->name('search_invoice_number');
+        Route::get('search_invoice_number',[SearchController::class,'search_invoice_number'])->name('search_invoice_number');
          Route::get('invoice_update/{id}',[ViewController::class,'invoice_update'])->name('invoice_update');
          Route::put('invoice_update/{id}/store_update_invoice',[InvoiceController::class,'store_update_invoice'])->name('store_update_invoice');
 
+         Route::get('status',[ViewController::class,'status'])->name('status');
+        Route::get('payment',[ViewController::class,'payment'])->name('payment');
+        Route::put('/update_status/{id}', [InvoiceController::class, 'update_status'])->name('update_status');
+        Route::put('/update_payment/{id}', [InvoiceController::class, 'update_payment'])->name('update_payment');
+
+          Route::get('inactive_status',[ViewController::class,'inactive_status'])->name('inactive_status');
+          Route::get('inactive_payment',[ViewController::class,'inactive_payment'])->name('inactive_payment');
+           Route::get('search_status',[SearchController::class,'search_status'])->name('search_status');
+            Route::get('search_inactive_status',[SearchController::class,'search_inactive_status'])->name('search_inactive_status');
+           Route::get('search_payment',[SearchController::class,'search_payment'])->name('search_payment');
+           Route::get('search_inactive_payment',[SearchController::class,'search_inactive_payment'])->name('search_inactive_payment');
+
+        //  purchase order
+         Route::get('purchase_order',[ViewController::class,'purchase_order'])->name('purchase_order');
+         Route::get('add_purchase',[PurchaseController::class,'add_purchase'])->name('add_purchase');
 
 });
 

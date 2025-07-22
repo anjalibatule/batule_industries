@@ -10,8 +10,12 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
     public function getCompanyDetails(){
-        $company = Company::orderBy('company_name', 'asc')->paginate(5);
+        $company = Company::where('status',1)->orderBy('company_name', 'asc')->paginate(5);
          return view('company',['company'=>$company]);
+    }
+    public function inactive_company(){
+        $company = Company::where('status',0)->orderBy('company_name', 'asc')->paginate(5);
+         return view('inactive_company',['company'=>$company]);
     }
   
     public function add_Company(){
@@ -75,31 +79,40 @@ class CompanyController extends Controller
 
      public function update_company_details(Request $request,$id){
    
-       $request->validate([
-           'companyName' => 'required|max:200',
-            'companyEmail' => 'required|email',
-            'mob' => 'required',
-            'companyAddress' => 'required|string',
-            'gstNo' => 'required|string',
-            'date' => 'required|date',
-            'status' => 'required|in:1,0',
-      ]);
-      $com = Company::findorFail($id);
-      $com->company_name = $request->companyName;
-      $com->company_email = $request->companyEmail;
-      $com->company_mobile = $request->mob;
-     $com->company_address = $request->companyAddress;
-     $com->gst_no = $request->gstNo;
-     $com->date = $request->date;
-      $com->status = $request->status; 
-      // dd($request->all());
-      if($com->save()){
-         return back()->with('success','Company details updated successfully!');
-      }
-      else{
-         return back()->with('error','Company details are not updated successfully');
+            $request->validate([
+               'companyName' => 'required|max:200',
+                  'companyEmail' => 'required|email',
+                  'mob' => 'required',
+                  'companyAddress' => 'required|string',
+                  'gstNo' => 'required|string',
+                  'date' => 'required|date',
+                  'status' => 'required|in:1,0',
+            ]);
+            $com = Company::findorFail($id);
+            $com->company_name = $request->companyName;
+            $com->company_email = $request->companyEmail;
+            $com->company_mobile = $request->mob;
+         $com->company_address = $request->companyAddress;
+         $com->gst_no = $request->gstNo;
+         $com->date = $request->date;
+            $com->status = $request->status; 
+            // dd($request->all());
+            if($com->save()){
+               return back()->with('success','Company details updated successfully!');
+            }
+            else{
+               return back()->with('error','Company details are not updated successfully');
+
+            }
 
       }
 
-      }
+       public function update_company_status(Request $request, $id)
+            {
+                $company = Company::findOrFail($id);
+                $company->status = $request->status;
+                $company->save();
+
+                return redirect()->back()->with('success', 'Status updated successfully!');
+            }
 }

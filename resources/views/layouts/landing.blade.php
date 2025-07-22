@@ -123,6 +123,25 @@
             border-bottom:2px solid white;
             width:100%;
         }
+        .nav-link1{
+        color: #fff;
+         text-transform: uppercase;
+         text-decoration: none;
+                display: inline-block;
+            padding: 16px;
+            position: relative;
+            top: 13%;
+            height: 65px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .nav-link1.active {
+            color:var(--primary) !important; /* Bootstrap primary color */
+            font-size:16px;
+            border-bottom:2px solid white;
+            width:125%;
+            background-color:white;
+        }
 
         .nav-link.active:hover,
         .nav-link.active:focus {
@@ -209,11 +228,12 @@
      <div class="container-fluid">
         <div class="row">
             <div class="col-2 side-bar">
-                
-                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item" style="margin-top:15%;margin-right:25px;font-size:20px;">
-                           <a class="text-decoration-none text-light" style="font-size: 25px " aria-current="page" href="#">BATULE INDUSTRIES</a>
+             
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item mt-4">
+                            <a class="navbar-brand text-light "  style="font-size: 23px; margin-left: 10px;" href="{{route('dashboard')}}">BATULE <br>INDUSTRIES</a>
                         </li>
+                         
                          <li class="nav-item mt-3">
                            <a class='nav-link @yield("active-dashboard") text-light' aria-current="page"  style="margin-right:25px" href="{{route('dashboard')}}">Dashboard</a>
                         </li>
@@ -229,10 +249,13 @@
                            </a>
                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('sale')}}">Invoice Bill</a></li>
-                              <li><a class="dropdown-item @yield('active-dashboard')" href="#">Status</a></li>
+                              <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('status')}}">Status</a></li>
          
-                              <li><a class="dropdown-item @yield('active-dashboard')" href="#">Payment</a></li>
+                              <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('payment')}}">Payment</a></li>
                            </ul>
+                        </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-purchase") text-light' style="margin-right:25px" href="{{route('purchase_order')}}">Purchase </a>
                         </li>
                          <li class="nav-item">
                            <a class='nav-link @yield("active-contact-detail") text-light' style="margin-right:25px" href="{{route('contact_detail')}}">Contact</a>
@@ -242,6 +265,8 @@
                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> -->
                         </ul>
+                   
+                    
             </div>
             <div class="col-10 nav-bar">
                 <div class="row mt-3">
@@ -478,6 +503,8 @@ $(document).ready(function() {
         });
 });
 </script>
+
+
 
 </body>
 </html>

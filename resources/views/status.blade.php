@@ -1,17 +1,19 @@
 @extends("layouts.landing")
-@section('title','sale Details Page')
+@section('title','sale Status Page')
 @section('active-sale','active')
 @section('content')
-      <div class="row">
-        <div class="col">
-             <h2 class="text-primary">Invoice Bill</h2>
-        </div>
-       <div class="col">
-             <form action="{{route('add_invoice')}}" method="get">
-                <button type="submit" class="btn-primary btn" style="margin-left: 75%;padding:1%;font-size:20px;">Add Invoice <i class="fas fa-plus"></i></button>
-             </form>
-        </div>
-     </div>
+  
+      <div class="container-fluid row bg-primary">
+          <div class="col-1">
+                 <a class='nav-link1 active text-light' aria-current="page"  style="margin-right:25px" href="{{route('status')}}">Active</a>
+          </div>
+          <div class="col-1">
+                   <a class='nav-link1 text-light' style="margin-right:25px" href="{{route('inactive_status')}}">Inactive</a>
+          </div>
+
+    </div>
+   
+    
      <div class="row">
           <div class="col-6">
 
@@ -38,8 +40,8 @@
                         <th>CGST</th>
                         <th>SGST</th>
                         <th>Total Amount</th>   
-                        <th>PDF</th>
-                        <th></th>
+                        <th>Status</th>
+                       
                     </tr>
                     @foreach($invoices as $inv)
                     <tr>
@@ -53,8 +55,18 @@
                          <td>{{$inv->sgst}}</td>
 
                          <td>{{$inv->total_amount}}</td>
-                         <td><a href="" class="text-danger text-decoration-none">PDF</a></td>
-                         <td><a href="{{route('invoice_update',$inv->id)}}"><i class="fas fa-edit text-success"></i></a></td>
+                        <td>
+                            <form action="{{ route('update_status', $inv->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <select name="status" class="form-control" onchange="this.form.submit()">
+                                    <option value="1" {{ old('status', $inv->status) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status', $inv->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </form>
+                        </td>
+
+                        
                         
                     </tr>
                     @endforeach
@@ -68,3 +80,4 @@
 
 
 @endsection
+

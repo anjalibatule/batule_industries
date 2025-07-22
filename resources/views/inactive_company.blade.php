@@ -5,10 +5,10 @@
      
        <div class="container-fluid row bg-primary">
           <div class="col-1">
-                 <a class='nav-link1 active text-light' aria-current="page"  style="margin-right:25px" href="{{route('company')}}">Active</a>
+                 <a class='nav-link1  text-light' aria-current="page"  style="margin-right:25px" href="{{route('company')}}">Active</a>
           </div>
           <div class="col-1">
-                   <a class='nav-link1 text-light'  href="{{route('inactive_company')}}">Inactive</a>
+                   <a class='nav-link1 active text-light'  href="{{route('inactive_company')}}">Inactive</a>
           </div>
 
     </div>

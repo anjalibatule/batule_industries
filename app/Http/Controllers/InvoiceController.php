@@ -162,6 +162,24 @@ class InvoiceController extends Controller
 
         }
 
+        public function update_status(Request $request, $id)
+            {
+                $invoice = Invoice::findOrFail($id);
+                $invoice->status = $request->status;
+                $invoice->save();
+
+                return redirect()->back()->with('success', 'Status updated successfully!');
+            }
+
+            public function update_payment(Request $request, $id)
+            {
+                $invoice = Invoice::findOrFail($id);
+                $invoice->payment = $request->payment;
+                $invoice->save();
+
+                return redirect()->back()->with('success', 'Payment detail updated successfully!');
+            }
+
 
 
 

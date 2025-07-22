@@ -236,13 +236,12 @@
                  </td>
             </tr>
             <tr>
-                  <td colspan="3">
+                  <td colspan="3" rowspan="2">
                      Total Amount:
                     <input type="text"  class="form-control totalAmt" name="totalAmt"  value="{{old('totalAmt',$invoices->total_amount)}}"  required style="display:inline-block !important;width:60% !important;">
                   </td>
             </tr>
             <tr>
-                 <td colspan="3"></td>
             </tr>
        
        
