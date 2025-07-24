@@ -15,12 +15,12 @@
 
       <div class="row mt-3">
         <div class="col">
-             <h2 class="text-primary">Company Details</h2>
+             <!-- <h2 class="text-primary">Company Details</h2> -->
         </div>
         <div class="col">
-             <form action="{{route('add_company')}}" method="get">
+             <!-- <form action="{{route('add_company')}}" method="get">
                 <button type="submit" class="btn-primary btn" style="margin-left: 88%;padding:1%;font-size:20px;">Add <i class="fas fa-plus"></i></button>
-             </form>
+             </form> -->
         </div>
       </div>     
       <div class="row">
@@ -28,7 +28,7 @@
             
         </div>
         <div class="col">
-             <form action="{{route('search_company_name')}}" method="get">
+             <form action="{{route('search_inactive_company_name')}}" method="get">
                 <input type="text" placeholder="Search" class="search"  id="search" name="search" value="{{ request('search') }}">
                 <button type="submit" value="Search" class="btn btn-primary" style="border-radius:10px !important"><i class="fas fa-search"></i></button>
               </form>
@@ -41,10 +41,11 @@
                     <tr>
                         <th>SR NO.</th>
                         <th>Company Name</th>
+                         <th>Owner Name</th>
                         <th>Company Email</th>
                         <th>Mobile Number</th>
                         <th>Company Address</th>
-                          <th>State</th>
+                          <!-- <th>State</th> -->
                         <th>GST Number</th>
                         <th>Date</th>
                         <th>Status</th>
@@ -55,10 +56,11 @@
                     <tr>
                         <td>{{ ($company->currentPage() - 1) * $company->perPage() + $loop->iteration }}</td>
                         <td>{{$com->company_name}}</td>
+                        <td>{{$com->owner_name}}</td>
                         <td>{{$com->company_email}}</td>
                         <td>{{$com->company_mobile}}</td>
                         <td>{{$com->company_address}}</td>
-                        <td>{{$com->state}}</td>
+                        <!-- <td>{{$com->state}}</td> -->
                         <td>{{$com->gst_no}}</td>
                         <td>{{$com->date}}</td>
                        

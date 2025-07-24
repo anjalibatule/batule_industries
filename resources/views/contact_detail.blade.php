@@ -19,6 +19,10 @@
                             <label for="company_name">Company Name:</label>
                            <input type="text" name="company_name" value="{{$contact->contact_company_name}}"  class="w-100 mt-1" style="padding:5px 10px;">
                         </div>
+                         <div class="col">
+                            <label for="owner_name">Owner:</label>
+                           <input type="text" name="owner_name" value="{{$contact->owner}}"  class="w-100 mt-1" style="padding:5px 10px;">
+                        </div>
                         <div class="col">
                             <label for="contactEmail">Email : </label>
                             <input type="email" name="contactEmail" value="{{$contact->contact_email}}"   class="w-100 mt-1" style="padding:5px 10px;">                          

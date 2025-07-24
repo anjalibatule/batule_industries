@@ -86,7 +86,7 @@ class UserController extends Controller
 
          //users
            public function getUser(){
-             $users = User::orderBy('name', 'asc')->paginate(5);
+             $users = User::where('role','User')->orderBy('name', 'asc')->paginate(10);
               return view('user',['users'=>$users]);
            }
 

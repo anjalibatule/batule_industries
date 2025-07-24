@@ -31,6 +31,18 @@
                               </span>
                          </div>
                      </div>
+                     <div class="col-6 mt-2">
+                         <label for="ownerName" class="form-label">Owner Name:</label><br>
+                        <input type="text" id="ownerName" class="form-control {{$errors->first('ownerName')?'input-error':''}}"  value="{{old('ownerName')}}" placeholder="Enter Company Owner Name" name="ownerName" required>
+                   
+                         <div class="col-12 mt-1">
+                              <span class="text-danger">
+                              @error('ownerName')
+                              {{$message}}
+                              @enderror
+                              </span>
+                         </div>
+                    </div>
                     <div class="col-6 mt-2">
                          <label for="companyEmail" class="form-label">Company Email Id:</label><br>
                         <input type="email" id="companyEmail" class="form-control {{$errors->first('companyEmail')?'input-error':''}}"  value="{{old('companyEmail')}}" placeholder="Enter Company Email Id" name="companyEmail" required>

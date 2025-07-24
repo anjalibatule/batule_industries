@@ -78,8 +78,7 @@
                      </div>
                      <div class="col-6 mt-1">
                         <label for="role" class="form-label">Role:</label><br>
-                        <select name="role" id="role" class="w-100 p-1" required>
-                            <option value="">-- Select Role --</option>
+                        <select name="role" id="role" class="w-100 p-1 form-control" required>
                             <option value="Admin" {{ old('role') == 'Admin' ? 'selected' : '' }}>Admin</option>
                             <option value="User" {{ old('role') == 'User' ? 'selected' : '' }}>User</option>
                         </select>

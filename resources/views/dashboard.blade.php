@@ -22,7 +22,7 @@
              <div class="col-3">
                 <div class="card h-100 text-center w-100 shadow-sm">
                     <h5 class="text-primary mt-2 mb-2">Invoices</h5>
-                    <p>Total invoices: {{\App\Models\Invoice::Count()}}</p>
+                    <p>Total Invoices: {{\App\Models\Invoice::Count()}}</p>
                      <a href="{{route('sale')}}" class="btn btn-primary text-light m-auto w-50 mb-3">Show</a>
                 </div>
             </div>
@@ -47,6 +47,40 @@
                        <a href="{{route('sale')}}" class="btn btn-primary text-light m-auto w-50 mb-3">Show</a>
                 </div>
             </div>
+                 
+         </div>
+
+         <div class="container-fluid" style="margin-top:20%">
+             <div class="row mt-4">
+            <div class="col-12" >
+                <h4 class="text-primary mb-4">Admin</h4>
+                 <table class="table table-bordered">
+                    <tr>
+                        <th>SR NO.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                        <th>Profile</th>
+                        <th>Role</th>
+
+                    </tr>
+                    @foreach( $admin  as $index => $adm)
+                    <tr>
+                        <td>{{$loop->iteration }}</td>
+                        <td>{{$adm->name}}</td>
+                        <td>{{$adm->email}}</td>
+                        <td>{{$adm->phone}}</td>
+                        <td><img src="{{url('storage/app/private/' . $adm->image)}}" alt="" class="img" style="width:50px;"></td>
+                        <td>{{$adm->role}}</td>
+
+                    </tr>
+                   @endforeach
+                
+                 </table>
+                  
+            </div>
+            
+        </div>
                  
          </div>
   

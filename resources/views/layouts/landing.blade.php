@@ -504,6 +504,42 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+$(document).ready(function() {
+    const sellerGST = '27'; // Example: Seller's state code (Maharashtra)
+
+    function calculateTax() {
+        let totalTaxable = parseFloat($('.totalTaxable').val()) || 0;
+        let buyerGST = $('#gstNo').val() || '';
+        let buyerState = buyerGST.substring(0, 2);
+
+        let cgst = 0, sgst = 0, igst = 0;
+
+        if (buyerState && buyerState === sellerGST) {
+            cgst = totalTaxable * 0.09;  // 9%
+            sgst = totalTaxable * 0.09;  // 9%
+            igst = 0;
+        } else {
+            igst = totalTaxable * 0.18;  // 18%
+        }
+
+        // Update fields
+        $('.cgst').val(cgst.toFixed(2));
+        $('.sgst').val(sgst.toFixed(2));
+        $('.igst').val(igst.toFixed(2));
+
+        // Total Amount
+        let totalAmt = totalTaxable + cgst + sgst + igst;
+        $('.totalAmt').val(totalAmt.toFixed(2));
+    }
+
+    // Trigger calculation on input change
+    $(document).on('input', '.totalTaxable, #gstNo', calculateTax);
+
+    // Initial calculation (if default value exists)
+    calculateTax();
+});
+</script>
 
 
 </body>

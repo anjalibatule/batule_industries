@@ -82,14 +82,14 @@ Route::middleware(['auth'])->group(function () {
         //  purchase order
          Route::get('purchase_order',[ViewController::class,'purchase_order'])->name('purchase_order');
          Route::get('add_purchase',[PurchaseController::class,'add_purchase'])->name('add_purchase');
+       Route::post('add_purchase/store_purchase', [PurchaseController::class, 'store_purchase'])->name('store_purchase');
+
 
 });
 
 
 
-// course
-Route::get('/course',[CourseController::class,'course'])->name('course');
-Route::get('/course_details/{id}',[CourseController::class,'course_details'])->name('course_details');
+
 
 
 

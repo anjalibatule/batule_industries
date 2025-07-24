@@ -31,6 +31,18 @@
                               </span>
                          </div>
                     </div>
+                     <div class="col-6 mt-2">
+                         <label for="ownerName" class="form-label">Owner Name:</label><br>
+                        <input type="text" id="ownerName" class="form-control {{$errors->first('ownerName')?'input-error':''}}"  value="{{old('ownerName',$company->owner_name)}}" placeholder="Enter Company Owner Name" name="ownerName" required>
+                   
+                         <div class="col-12 mt-1">
+                              <span class="text-danger">
+                              @error('ownerName')
+                              {{$message}}
+                              @enderror
+                              </span>
+                         </div>
+                    </div>
                     <div class="col-6 mt-2">
                          <label for="companyEmail" class="form-label">Company Email Id:</label><br>
                         <input type="email" id="companyEmail" class="form-control {{$errors->first('companyEmail')?'input-error':''}}"  value="{{old('companyEmail',$company->company_email)}}" placeholder="Enter Company Email Id" name="companyEmail" required>
@@ -83,7 +95,7 @@
                    </div>
                      <div class="col-6 mt-2">
                          <label for="gstNo" class="form-label">GST Number:</label><br>
-                        <input type="text" id="gstNo" class="form-control{{$errors->first('gstNo')?'input-error':''}}"  value="{{old('gstNo',$company->gst_no)}}" name="gstNo" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" maxlenth="15" required>
+                        <input type="text" id="gstNo" class="form-control{{$errors->first('gstNo')?'input-error':''}}"  value="{{old('gstNo',$company->gst_no)}}" name="gstNo" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[0-9A-Z]{4}$" maxlenth="15" required>
                    
                          <div class="col-12 mt-1">
                               <span class="text-danger">

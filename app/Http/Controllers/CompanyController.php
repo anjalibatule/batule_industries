@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
     public function getCompanyDetails(){
-        $company = Company::where('status',1)->orderBy('company_name', 'asc')->paginate(5);
+        $company = Company::where('status',1)->orderBy('company_name', 'asc')->paginate(10);
          return view('company',['company'=>$company]);
     }
     public function inactive_company(){
@@ -58,6 +58,7 @@ class CompanyController extends Controller
        
       $com = new Company();
       $com->company_name = $request->companyName;
+       $com->owner_name = $request->ownerName;
       $com->company_email = $request->companyEmail;
       $com->company_mobile = $request->mob;
      $com->company_address = $request->companyAddress;
@@ -66,7 +67,7 @@ class CompanyController extends Controller
       $com->state = $request->state;
       $com->status = '1' ; 
       if($com->save()){
-         return back()->with('success','Company details added successfully!');
+         return redirect()->route('company')->with('success','Company details added successfully!');
       }
       else{
          return back()->with('error','Company details are not added');
@@ -90,6 +91,7 @@ class CompanyController extends Controller
             ]);
             $com = Company::findorFail($id);
             $com->company_name = $request->companyName;
+             $com->owner_name = $request->ownerName;
             $com->company_email = $request->companyEmail;
             $com->company_mobile = $request->mob;
          $com->company_address = $request->companyAddress;
@@ -98,7 +100,7 @@ class CompanyController extends Controller
             $com->status = $request->status; 
             // dd($request->all());
             if($com->save()){
-               return back()->with('success','Company details updated successfully!');
+               return redirect()->route('company')->with('success','Company details updated successfully!');
             }
             else{
                return back()->with('error','Company details are not updated successfully');

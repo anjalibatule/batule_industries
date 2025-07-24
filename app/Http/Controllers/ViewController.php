@@ -15,8 +15,8 @@ class ViewController extends Controller
 {
      public function dashboard()
     {
-        // $company = Company::all();
-        return view('dashboard');
+        $admin = User::where('role','Admin')->get();
+        return view('dashboard',['admin'=> $admin ]);
     }
      public function index()
     {
@@ -28,6 +28,7 @@ class ViewController extends Controller
           return view('sale',['invoices'=>$invoices]);
     }
     public function purchase_order(){
+    
        return view('purchase_order');
     }
      public function status()
@@ -79,6 +80,7 @@ class ViewController extends Controller
         // dd($request->all());
         $contact= Contact::find($id);
          $contact->contact_company_name = $request->company_name;
+           $contact->owner = $request->owner_name;
          $contact->contact_email = $request->contactEmail;
          $contact->contact_number = $request->mob;
          $contact->gst_number = $request->gstNumber;

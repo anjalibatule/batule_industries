@@ -15,7 +15,7 @@
 
       <div class="row mt-3">
         <div class="col">
-             <h2 class="text-primary">Company Details</h2>
+             <!-- <h2 class="text-primary">Company Details</h2> -->
         </div>
         <div class="col">
              <form action="{{route('add_company')}}" method="get">
@@ -41,10 +41,11 @@
                     <tr>
                         <th>SR NO.</th>
                         <th>Company Name</th>
+                         <th>Owner Name</th>
                         <th>Company Email</th>
                         <th>Mobile Number</th>
                         <th>Company Address</th>
-                          <th>State</th>
+                          <!-- <th>State</th> -->
                         <th>GST Number</th>
                         <th>Date</th>
                         <th>Status</th>
@@ -55,10 +56,11 @@
                     <tr>
                         <td>{{ ($company->currentPage() - 1) * $company->perPage() + $loop->iteration }}</td>
                         <td>{{$com->company_name}}</td>
+                        <td>{{$com->owner_name}}</td>
                         <td>{{$com->company_email}}</td>
                         <td>{{$com->company_mobile}}</td>
                         <td>{{$com->company_address}}</td>
-                        <td>{{$com->state}}</td>
+                        <!-- <td>{{$com->state}}</td> -->
                         <td>{{$com->gst_no}}</td>
                         <td>{{$com->date}}</td>
                        

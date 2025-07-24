@@ -29,6 +29,7 @@ class InvoiceController extends Controller
 
                         $com = new Company();
                         $com->company_name   = $request->companyName;
+                         $com->owner_name = $request->ownerName;
                         $com->company_email  = $request->companyEmail;
                         $com->company_mobile = $request->mob;
                         $com->company_address= $request->companyAddress;

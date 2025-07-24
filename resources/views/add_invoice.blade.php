@@ -16,12 +16,12 @@
                        
                         <div class="col-6 mt-1">
                         
-                        <select name="company" id="company" class="w-75 p-2" style="outline:none;border-radius:10px;">
-                            <option class="w-50" value="0" name="company">Select Company</option>
+                        <select name="company" id="company" class="w-75 p-2 company" style="outline:none;border-radius:10px;">
+                             <option class="w-50" name="company" id="selectCompanyDetails">Select Company</option>
                             @foreach($Company as $com)
                             <option value="{{ $com->id }}"  {{ old('company') == $com->id ? 'selected' : '' }} name="company" class="w-50" >{{$com->company_name}}</option>
                             @endforeach
-        
+                              <option class="w-50" value="0" name="company">Other Company</option>
                         </select>
                 
         
@@ -47,14 +47,14 @@
                      <p><b>Address :</b>
                         <span id="showCompanyAddress"></span>
                      </p><br>
-                     <p><b>State :</b>
+                     <!-- <p><b>State :</b>
                         <span id="showCompanyState"></span>
-                     </p><br>
+                     </p><br> -->
                      <p><b>GST Number:</b>
                         <span id="showCompanyGST" class="gst_number"></span>
                      </p><br>
                 </div>
-                <div class="row" id="SelectCompany"> 
+                <div class="row" id="SelectCompany" style="display:none"> 
                     <div class="col-4 mt-2">
                         Company Name:
                         <input type="text" id="companyName" class="form-control {{$errors->first('companyName')?'input-error':''}}"  value="{{old('companyName')}}" placeholder="Enter Company Name" name="companyName">
@@ -67,7 +67,18 @@
                             </span>
                         </div>
                     </div>
-                
+                     <div class="col-4 mt-2">
+                         <label for="ownerName" class="form-label">Owner Name:</label><br>
+                        <input type="text" id="ownerName" class="form-control {{$errors->first('ownerName')?'input-error':''}}"  value="{{old('ownerName')}}" placeholder="Enter Company Owner Name" name="ownerName" required>
+                   
+                         <div class="col-12 mt-1">
+                              <span class="text-danger">
+                              @error('ownerName')
+                              {{$message}}
+                              @enderror
+                              </span>
+                         </div>
+                    </div>
                      <div class="col-4 mt-2">
                         <label for="companyEmail" class="form-label">Email Id:</label><br>
                         <input type="email" id="companyEmail" class="form-control {{$errors->first('companyEmail')?'input-error':''}}"  value="{{old('companyEmail')}}" placeholder="Enter Company Email Id" name="companyEmail" >

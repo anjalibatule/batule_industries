@@ -18,7 +18,7 @@
 
           </div>
           <div class="col-6">
-             <form action="{{route('search_invoice_number')}}" method="get">
+             <form action="{{route('search_inactive_status')}}" method="get">
                 <input type="text" placeholder="Search" class="search"  id="search" name="search" value="{{ request('search') }}">
                 <button type="submit" value="Search" class="btn btn-primary" style="border-radius:10px !important"><i class="fas fa-search"></i></button>
               </form>
