@@ -504,12 +504,14 @@ $(document).ready(function() {
 });
 </script>
 
+
+
 <script>
 $(document).ready(function() {
-    const sellerGST = '27'; // Example: Seller's state code (Maharashtra)
+    const sellerGST = '27'; // Seller's state code (e.g., Maharashtra)
 
     function calculateTax() {
-        let totalTaxable = parseFloat($('.totalTaxable').val()) || 0;
+        let totalTaxable = parseFloat($('#totalTaxable').val()) || 0;
         let buyerGST = $('#gstNo').val() || '';
         let buyerState = buyerGST.substring(0, 2);
 
@@ -523,21 +525,24 @@ $(document).ready(function() {
             igst = totalTaxable * 0.18;  // 18%
         }
 
-        // Update fields
-        $('.cgst').val(cgst.toFixed(2));
-        $('.sgst').val(sgst.toFixed(2));
-        $('.igst').val(igst.toFixed(2));
+        // Update fields using ID
+        $('#cgst').val(cgst.toFixed(2));
+        $('#sgst').val(sgst.toFixed(2));
+        $('#igst').val(igst.toFixed(2));
 
         // Total Amount
         let totalAmt = totalTaxable + cgst + sgst + igst;
-        $('.totalAmt').val(totalAmt.toFixed(2));
+        $('#totalAmt').val(totalAmt.toFixed(2));
     }
 
-    // Trigger calculation on input change
-    $(document).on('input', '.totalTaxable, #gstNo', calculateTax);
+    // Trigger calculation when totalTaxable or gstNo changes
+    $(document).on('input', '#totalTaxable, #gstNo', calculateTax);
 
-    // Initial calculation (if default value exists)
+    
+
+    // Initial calculation on page load (if default values exist)
     calculateTax();
+    
 });
 </script>
 

@@ -6,6 +6,8 @@ use  App\Models\Company;
 use App\Models\Contact;
 use App\Models\Invoice;
 use  App\Models\InvoiceDescr;
+use App\Models\PurchaseOrder;
+
 
 
 use Illuminate\Http\Request;
@@ -145,5 +147,25 @@ class SearchController extends Controller
         return view('user',['users'=>$userData,'search'=>$request->search]);
     
     }
+
+
+    public function search_purchase_number(Request $request){
+        $search = $request->search;
+
+    $purchase = PurchaseOrder::with('company')
+        ->where(function ($query) use ($search) {
+            $query->where('po_invoice', 'like', "%$search%")
+                ->orWhere('po_date', 'like', "%$search%")
+                ->orWhereRelation('company', 'company_name', 'like', "%$search%")
+                // ->orWhereRelation('company', 'gst_no', 'like', "%$search%")
+        ;})
+        ->orderBy('created_at', 'desc')
+        ->paginate(5)
+        ->withQueryString();
+
+        return view('purchase_order',['purchase'=>$purchase,'search'=>$search]);
+    
+    
+      }
     
 }

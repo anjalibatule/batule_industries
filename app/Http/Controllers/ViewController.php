@@ -6,6 +6,7 @@ use  App\Models\Company;
 use App\Models\Contact;
 use App\Models\Invoice;
 use  App\Models\InvoiceDescr;
+use App\Models\PurchaseOrder;
 
 
 use Illuminate\Http\Request;
@@ -28,8 +29,8 @@ class ViewController extends Controller
           return view('sale',['invoices'=>$invoices]);
     }
     public function purchase_order(){
-    
-       return view('purchase_order');
+         $purchase = PurchaseOrder::with('company')->orderBy('created_at','desc')->paginate(8);
+       return view('purchase_order',['purchase'=>$purchase]);
     }
      public function status()
     {

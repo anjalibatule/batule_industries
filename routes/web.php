@@ -83,6 +83,10 @@ Route::middleware(['auth'])->group(function () {
          Route::get('purchase_order',[ViewController::class,'purchase_order'])->name('purchase_order');
          Route::get('add_purchase',[PurchaseController::class,'add_purchase'])->name('add_purchase');
        Route::post('add_purchase/store_purchase', [PurchaseController::class, 'store_purchase'])->name('store_purchase');
+         Route::get('search_purchase_number',[SearchController::class,'search_purchase_number'])->name('search_purchase_number');
+         Route::get('update_purchase/{id}',[PurchaseController::class,'update_purchase'])->name('update_purchase');
+       Route::put('update_purchase/{id}/edit_purchase', [PurchaseController::class, 'edit_purchase'])->name('edit_purchase');
+
 
 
 });
