@@ -8,7 +8,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PurchaseController;
-
+use App\Http\Controllers\PDFController;
 
 
 
@@ -86,6 +86,11 @@ Route::middleware(['auth'])->group(function () {
          Route::get('search_purchase_number',[SearchController::class,'search_purchase_number'])->name('search_purchase_number');
          Route::get('update_purchase/{id}',[PurchaseController::class,'update_purchase'])->name('update_purchase');
        Route::put('update_purchase/{id}/edit_purchase', [PurchaseController::class, 'edit_purchase'])->name('edit_purchase');
+
+
+
+       Route::get('/pdf-view/{id}', [PDFController::class, 'viewPDF'])->name('pdf_view');
+       Route::get('/pdf-download/{id}', [PDFController::class, 'downloadPDF'])->name('pdf_download');
 
 
 

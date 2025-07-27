@@ -53,7 +53,7 @@
                          <td>{{$inv->sgst}}</td>
 
                          <td>{{$inv->total_amount}}</td>
-                         <td><a href="" class="text-danger text-decoration-none">PDF</a></td>
+                         <td><a href="{{ route('pdf_view', $inv->id) }}" class="text-danger text-decoration-none">PDF</a></td>
                          <td><a href="{{route('invoice_update',$inv->id)}}"><i class="fas fa-edit text-success"></i></a></td>
                         
                     </tr>

@@ -178,7 +178,7 @@
             top: 6%;
             right: 3%;
             width: 12%;
-            height: 30%;
+            height: 33%;
             border-radius: 10px;
             background:white;
             /* box-shadow: 2px 2px 1px rgba(0,0,0,.4); */
@@ -280,7 +280,7 @@
                             </div>
                             @auth
                             <div class="col">
-                                 <a class="text-light fs-xx mb-1 text-decoration-none" style="font-size: 21px;margin-left: 64%;cursor:pointer;" id="logout" onclick="logoutPage()">{{Auth::User()->name}}</a>
+                                 <a class="text-light fs-xx mb-1 text-decoration-none" style="font-size: 21px;margin-left: 50%;cursor:pointer;" id="logout" onclick="logoutPage()">{{Auth::User()->name}}</a>
                             </div>
                              @endauth
                           </div>
