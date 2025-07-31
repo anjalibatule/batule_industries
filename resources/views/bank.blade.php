@@ -8,7 +8,7 @@
              <h2 class="text-primary">Bank Details</h2>
         </div>
      </div>  
-     <div class="container-fluid mt-3">
+     <div class="container-fluid mt-3" id="contact">
         <div class="row">
             <div class="col-12">
                 <form action="{{route('bank_update',$bank->id)}}" method="post">

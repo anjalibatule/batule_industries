@@ -64,10 +64,11 @@
                  
          </div>
 
-         <div class="container-fluid" style="margin-top:20%">
+         <div class="container-fluid" style="margin-top:20%;margin-bottom:28%;">
              <div class="row mt-4" id="admin">
             <div class="col-12" >
                 <h4 class="text-primary mb-4">Admin</h4>
+                <div class="table-responsive">
                  <table class="table table-bordered">
                     <tr>
                         <th>SR NO.</th>
@@ -91,6 +92,7 @@
                    @endforeach
                 
                  </table>
+             </div>
                   
             </div>
             

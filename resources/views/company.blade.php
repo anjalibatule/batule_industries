@@ -19,7 +19,7 @@
         </div>
         <div class="col">
              <form action="{{route('add_company')}}" method="get">
-                <button type="submit" class="btn-primary btn" style="margin-left: 88%;padding:1%;font-size:20px;">Add <i class="fas fa-plus"></i></button>
+                <button type="submit" class="btn-primary btn add">Add <i class="fas fa-plus"></i></button>
              </form>
         </div>
       </div>     
@@ -37,6 +37,7 @@
       
          <div class="row mt-4">
             <div class="col-12" >
+               <div class="table-responsive">
                  <table class="table table-bordered">
                     <tr>
                         <th>SR NO.</th>
@@ -107,7 +108,8 @@
                  
                  </table>
                   {{$company->links()}}
-            </div>       
+            </div>  
+          </div>     
         </div>
 
 

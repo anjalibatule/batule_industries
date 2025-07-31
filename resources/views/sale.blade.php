@@ -8,15 +8,15 @@
         </div>
        <div class="col">
              <form action="{{route('add_invoice')}}" method="get">
-                <button type="submit" class="btn-primary btn" style="margin-left: 75%;padding:1%;font-size:20px;">Add Invoice <i class="fas fa-plus"></i></button>
+                <button type="submit" class="btn-primary btn add">Add <i class="fas fa-plus"></i></button>
              </form>
         </div>
      </div>
      <div class="row">
-          <div class="col-6">
+          <div class="col">
 
           </div>
-          <div class="col-6">
+          <div class="col">
              <form action="{{route('search_invoice_number')}}" method="get">
                 <input type="text" placeholder="Search" class="search"  id="search" name="search" value="{{ request('search') }}">
                 <button type="submit" value="Search" class="btn btn-primary" style="border-radius:10px !important"><i class="fas fa-search"></i></button>
@@ -26,6 +26,7 @@
       
        <div class="row mt-4">
             <div class="col-12" >
+               <div class="table-responsive">
                  <table class="table table-bordered">
                     <tr>
      
@@ -62,7 +63,8 @@
                     {{$invoices->links()}}
                  </table>
                 
-            </div>       
+            </div>   
+          </div>    
         </div>
 
 

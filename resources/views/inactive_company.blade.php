@@ -37,6 +37,7 @@
       
          <div class="row mt-4">
             <div class="col-12" >
+                <div class="table-responsive">
                  <table class="table table-bordered">
                     <tr>
                         <th>SR NO.</th>
@@ -107,7 +108,8 @@
                  
                  </table>
                   {{$company->links()}}
-            </div>       
+            </div>
+          </div>       
         </div>
 
 

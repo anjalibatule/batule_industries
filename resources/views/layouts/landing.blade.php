@@ -18,12 +18,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <!-- Bootstrap Bundle JS (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- jQuery (Google CDN) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
      
     <style>
        *{
@@ -178,7 +179,7 @@
             top: 6%;
             right: 3%;
             width: 12%;
-            height: 33%;
+            height: 29%;
             border-radius: 10px;
             background:white;
             /* box-shadow: 2px 2px 1px rgba(0,0,0,.4); */
@@ -221,11 +222,78 @@
          transition:none;
          width: 0;
     }
-       
+    #mobileShow {
+       display: none;
+    }
+    .add{
+        margin-left: 88%;
+        padding: 1%;
+        font-size: 20px;
+    }
+    
+    /* responsive */
+
+     @media screen and (max-width: 370px) {
+   #mobileShow {
+      display: block !important;
+   }
+
+   #mobileHide {
+      display: none !important;
+   }
+
+   body {
+      background: white;
+   }
+   nav{
+    margin-left:0 !important;
+    margin-top:0 !important;
+   }
+   
+
+   .navbar-toggler {
+      border: 2px solid white !important;
+   }
+   footer{
+        background: var(--primary);
+    position: fixed;
+    bottom: 0;
+    left: 0 !important;
+    height: 7%;
+    right: 0;
+    width:100%;
+   }
+    .col-3{
+            width:50% !important;
+         }
+         .add{
+            margin-left:48% !important;
+                    padding: 10px;
+         }
+         
+         .search{
+              margin-left:-27% !important;
+              margin-top:5% !important;
+                padding: 10px;
+         }
+         .col-1{
+            width:33% !important;
+         }
+         .col-6{
+            width:100% !important;
+         }
+         body{
+            height:1500px !important;
+         }
+         #contact .col-4{
+             width:100% !important;
+         }
+}
+
     </style>
     </head>
 <body>
-     <div class="container-fluid">
+     <div class="container-fluid" id="mobileHide">
         <div class="row">
             <div class="col-2 side-bar">
              
@@ -271,6 +339,7 @@
                    
                     
             </div>
+
             <div class="col-10 nav-bar">
                 <div class="row mt-3">
                     <div class="col">
@@ -302,8 +371,8 @@
                            <img src="{{url('storage/app/private/'.Auth::user()->image) }}" alt="image" class="img1">
                      </a>
 
-                     <h6 class="text-light fs-xx mt-1" style="font-size: 21px; margin-left: 30%; color: blue !important;">
-                           Welcome <span style="margin-left:10%;">{{ Auth::user()->name }}</span>
+                     <h6 class="text-light fs-xx mt-1" style="font-size: 21px; margin-left: 23%; color: blue !important;">
+                           Welcome <span>{{ Auth::user()->name }}</span>
                      </h6>
 
                      <input type="submit" class="btn btn-primary mt-1" style="margin-left:30%" value="Logout">
@@ -317,8 +386,70 @@
 
         </footer>
      </div>
-   
-       
+
+
+    <!-- mobile -->
+    <div id="mobileShow">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid p-3">
+            <a class="navbar-brand" href="#">BATULE INDUSTRIES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <li class="nav-item mt-3">
+                           <a class='nav-link @yield("active-dashboard") text-light' aria-current="page"  style="margin-right:25px" href="{{route('dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class='nav-link @yield("active-user") text-light' aria-current="page"  style="margin-right:25px" href="{{route('user')}}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class='nav-link @yield("active-company") text-light' style="margin-right:25px" href="{{route('company')}}">Company</a>
+                        </li>
+                         <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle text-light" href="{{route('sale')}}" id="navbarDropdown"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               Sale
+                           </a>
+                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('sale')}}">Invoice Bill</a></li>
+                              <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('status')}}">Status</a></li>
+         
+                              <li><a class="dropdown-item @yield('active-dashboard')" href="{{route('payment')}}">Payment</a></li>
+                           </ul>
+                        </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-purchase") text-light' style="margin-right:25px" href="{{route('purchase_order')}}">Purchase </a>
+                        </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-contact-detail") text-light' style="margin-right:25px" href="{{route('contact_detail')}}">Contact</a>
+                        </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-bank-detail") text-light' style="margin-right:25px" href="{{route('bank_detail')}}">Bank</a>
+                        </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-bank-detail") text-light btn btn-light' style="margin-right:25px;background: white;color: blue !important;" href="{{route('logout')}}">LOGOUT</a>
+                        </li>
+            </ul>
+            <!-- <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+                </div>
+            </div>
+            </nav>   
+             <div class="container-fluid mt-4">
+                @yield('content')
+             </div>
+
+            <footer>
+
+            </footer>
+    </div>
+
+        
+              
+ 
       <script>
          function logoutPage(){
             const log = document.getElementById('logoutPage').style.display = "block";
@@ -548,7 +679,6 @@ $(document).ready(function() {
     
 });
 </script>
-
 
 </body>
 </html>

@@ -15,10 +15,10 @@
    
     
      <div class="row">
-          <div class="col-6">
+          <div class="col">
 
           </div>
-          <div class="col-6">
+          <div class="col">
              <form action="{{route('search_status')}}" method="get">
                 <input type="text" placeholder="Search" class="search"  id="search" name="search" value="{{ request('search') }}">
                 <button type="submit" value="Search" class="btn btn-primary" style="border-radius:10px !important"><i class="fas fa-search"></i></button>
@@ -28,6 +28,7 @@
       
        <div class="row mt-4">
             <div class="col-12" >
+                  <div class="table-responsive">
                  <table class="table table-bordered">
                     <tr>
      
@@ -73,7 +74,7 @@
                   
                     {{$invoices->links()}}
                  </table>
-                
+               </div>
             </div>       
         </div>
 
