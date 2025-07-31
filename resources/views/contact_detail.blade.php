@@ -15,35 +15,34 @@
                     @method('put')
                     @csrf
                     <div class="row">
-                        <div class="col">
+                        <div class="col-4 mt-2">
                             <label for="company_name">Company Name:</label>
-                           <input type="text" name="company_name" value="{{$contact->contact_company_name}}"  class="w-100 mt-1" style="padding:5px 10px;">
+                           <input type="text" name="company_name" value="{{$contact->contact_company_name}}"  class="w-100 mt-1 form-control">
                         </div>
-                         <div class="col">
+                         <div class="col-4 mt-2">
                             <label for="owner_name">Owner:</label>
-                           <input type="text" name="owner_name" value="{{$contact->owner}}"  class="w-100 mt-1" style="padding:5px 10px;">
+                           <input type="text" name="owner_name" value="{{$contact->owner}}"  class="w-100 mt-1 form-control">
                         </div>
-                        <div class="col">
+                        <div class="col-4 mt-2">
                             <label for="contactEmail">Email : </label>
-                            <input type="email" name="contactEmail" value="{{$contact->contact_email}}"   class="w-100 mt-1" style="padding:5px 10px;">                          
+                            <input type="email" name="contactEmail" value="{{$contact->contact_email}}"   class="w-100 mt-1 form-control">                          
                         </div>
-                           <div class="col">
+                        <div class="col-4 mt-2">
                             <label for="mob">Mobile Number : </label>
-                           <input type="tel" name="mob" value="{{$contact->contact_number}}"  class="w-100 mt-1" style="padding:5px 10px;" pattern="^\+91-[6-9][0-9]{9}$">
+                           <input type="tel" name="mob" value="{{$contact->contact_number}}"  class="w-100 mt-1 form-control" pattern="^\+91-[6-9][0-9]{9}$">
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col">
+                  
+                        <div class="col-4 mt-2">
                             <label for="gstNumber">GST Number : </label>
-                           <input type="text" name="gstNumber" value="{{$contact->gst_number}}"   class="w-100 mt-1" style="padding:5px 10px;" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" maxlenth="15">
+                           <input type="text" name="gstNumber" value="{{$contact->gst_number}}"   class="w-100 mt-1 form-control" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" maxlenth="15">
                         </div>
-                        <div class="col">
+                        <div class="col-4 mt-2">
                             <label for="contactAddress">Address : </label>
-                            <textarea type="text" name="contactAddress"  class="w-100 mt-1" style="padding:5px 10px;">{{$contact->contact_address}}</textarea>                        
+                            <textarea type="text" name="contactAddress"  class="w-100 mt-1 form-control">{{$contact->contact_address}}</textarea>                        
                         </div>
-                           <div class="col">
+                        <div class="col-4 mt-2">
                             <label for="contact_map">Map :</label>
-                           <textarea type="text" name="contact_map"  class="w-100 mt-1" style="padding:5px 10px;">{{$contact->map}}</textarea> 
+                           <textarea type="text" name="contact_map"  class="w-100 mt-1 form-control">{{$contact->map}}</textarea> 
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-4">Update</button>

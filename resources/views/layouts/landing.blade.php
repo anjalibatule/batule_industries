@@ -260,6 +260,9 @@
                          <li class="nav-item">
                            <a class='nav-link @yield("active-contact-detail") text-light' style="margin-right:25px" href="{{route('contact_detail')}}">Contact</a>
                         </li>
+                         <li class="nav-item">
+                           <a class='nav-link @yield("active-bank-detail") text-light' style="margin-right:25px" href="{{route('bank_detail')}}">Bank</a>
+                        </li>
                        
                         <!-- <li class="nav-item">
                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

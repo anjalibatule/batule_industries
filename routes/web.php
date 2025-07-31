@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
          Route::get('search_purchase_number',[SearchController::class,'search_purchase_number'])->name('search_purchase_number');
          Route::get('update_purchase/{id}',[PurchaseController::class,'update_purchase'])->name('update_purchase');
        Route::put('update_purchase/{id}/edit_purchase', [PurchaseController::class, 'edit_purchase'])->name('edit_purchase');
+       Route::put('/update_purchase_status/{id}', [PurchaseController::class, 'update_purchase_status'])->name('update_purchase_status');
 
 
 
@@ -93,7 +94,9 @@ Route::middleware(['auth'])->group(function () {
        Route::get('/pdf-download/{id}', [PDFController::class, 'downloadPDF'])->name('pdf_download');
 
 
-
+      //Bank detail      
+        Route::get('bank_detail',[ViewController::class,'bank_detail'])->name('bank_detail');
+       Route::put('bank_detail/{id}/bank_update',[ViewController::class,'bank_update'])->name('bank_update');
 });
 
 

@@ -54,7 +54,12 @@ class InvoiceController extends Controller
                     $invoice->total_price =  $request->totalTaxable;
                     $invoice->igst =  $request->igst;
                     $invoice->cgst =  $request->cgst; 
-                    $invoice->sgst =  $request->sgst;
+                     $invoice->sgst =  $request->sgst; 
+                    $invoice->cin =  $request->cin_no ?? null;
+                      $invoice->e_way =  $request->e_way ?? null;
+                      $invoice->transport =  $request->transport ?? null;
+                      $invoice->vehicle_no =  $request->vehicle_no ?? null;
+                      $invoice->lr_no =  $request->lr_no ?? null;     
                     $invoice->total_amount =   $request->totalAmt;
                     $invoice->payment_method = '1';
                     $invoice->payment        = '1';
@@ -113,6 +118,12 @@ class InvoiceController extends Controller
                     $invoice->igst =  $request->igst;
                     $invoice->cgst =  $request->cgst; 
                     $invoice->sgst =  $request->sgst;
+                      $invoice->cin =  $request->cin_no ?? null;
+                      $invoice->e_way =  $request->e_way ?? null;
+                      $invoice->transport =  $request->transport ?? null;
+                      $invoice->vehicle_no =  $request->vehicle_no ?? null;
+                      $invoice->lr_no =  $request->lr_no ?? null;
+
                     $invoice->total_amount =   $request->totalAmt;
                     $invoice->payment_method = '1';
                     $invoice->payment        = '1';

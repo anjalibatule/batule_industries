@@ -103,36 +103,102 @@
                 </td>
                 <td colspan="4" rowspan="4">
 
-                        Invoice Number:
-                       <input type="number" id="invoice_no" class="form-control {{$errors->first('invoice_no')?'input-error':''}}"  value="{{old('invoice_no',$invoices->invoice_number)}}" name="invoice_no" readonly>
-                        <div class="col-4"> 
-                            <span class="text-danger">
-                                @error('invoice_no')
-                                {{$message}}
-                                @enderror
-                            </span>
-                        </div>
-                    <label for="invoice_date" class="form-label mt-2">Invoice Date:</label><br>
-                        <input type="date" id="invoice_date" class="form-control {{$errors->first('invoice_date')?'input-error':''}}" value="{{old('invoice_date', $invoices->invoice_date)}}"  name="invoice_date" required>
-                       Purchase Order Number:
-                       <input type="number" id="po_no" class="form-control {{$errors->first('po_no')?'input-error':''}}"  value="{{old('po_no',$invoices->po_no)}}" name="po_no">
-                        <div class="col-4"> 
-                            <span class="text-danger">
-                                @error('po_no')
-                                {{$message}}
-                                @enderror
-                            </span>
-                        </div>
-                        Purchase Order Date:
-                       <input type="date" id="po_date" class="form-control {{$errors->first('po_date')?'input-error':''}}"  value="{{old('po_date',$invoices->po_date)}}" name="po_date">
-                        <div class="col-4"> 
-                            <span class="text-danger">
-                                @error('po_date')
-                                {{$message}}
-                                @enderror
-                            </span>
-                        </div>
+                      <div class="row">
+                            <div class="col-4">
+                                Invoice Number:
+                            <input type="number" id="invoice_no" class="form-control {{$errors->first('invoice_no')?'input-error':''}}"  value="{{old('invoice_no',$invoices->invoice_number)}}" name="invoice_no" readonly>
+                                <div class="col-4"> 
+                                    <span class="text-danger">
+                                        @error('invoice_no')
+                                        {{$message}}
+                                        @enderror
+                                    </span>
+                                </div>
+                         </div>
+                        <div class="col-4">
+                            Invoice Date:
+                                <input type="date" id="invoice_date" class="form-control {{$errors->first('invoice_date')?'input-error':''}}" value="{{old('invoice_date', $invoices->invoice_date)}}"  name="invoice_date" required>
+                       </div>
+                       <div class="col-4">
+                        
+                            Purchase Order Number:
+                            <input type="number" id="po_no" class="form-control {{$errors->first('po_no')?'input-error':''}}"  value="{{old('po_no',$invoices->po_no)}}" name="po_no">
+                                <div class="col-4"> 
+                                    <span class="text-danger">
+                                        @error('po_no')
+                                        {{$message}}
+                                        @enderror
+                                    </span>
+                                </div>
+                         </div>
+                         <div class="col-4">
+                            Purchase Order Date:
+                           <input type="date" id="po_date" class="form-control {{$errors->first('po_date')?'input-error':''}}"  value="{{old('po_date',$invoices->po_date)}}" name="po_date">
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('po_date')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
+                        <div class="col-4">
+                            CIN NO:
+                            <input type="number" id="cin_no" class="form-control {{$errors->first('cin_no')?'input-error':''}}"  value="{{old('cin_no',$invoices->cin)}}" name="cin_no" >
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('cin_no')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
+                        <div class="col-4">
+                            E-Way Bill:
+                            <input type="text" id="e_way" class="form-control {{$errors->first('e_way')?'input-error':''}}"  value="{{old('e_way',$invoices->e_way)}}" name="e_way" >
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('e_way')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
+                        <div class="col-4">
+                            Transport & Mode:
+                            <input type="text" id="transport" class="form-control {{$errors->first('transport')?'input-error':''}}"  value="{{old('transport',$invoices->transport)}}" name="transport" >
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('transport')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
+                       <div class="col-4">
+                            Vehicle Number:
+                            <input type="text" id="vehicle_no" class="form-control {{$errors->first('vehicle_no')?'input-error':''}}"  value="{{old('vehicle_no',$invoices->vehicle_no)}}" name="vehicle_no" >
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('vehicle_no')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
+                        <div class="col-4">
+                            LR No:
+                            <input type="text" id="lr_no" class="form-control {{$errors->first('lr_no')?'input-error':''}}"  value="{{old('lr_no',$invoices->lr_no)}}" name="lr_no" >
+                            <div class="col-4"> 
+                                <span class="text-danger">
+                                    @error('lr_no')
+                                    {{$message}}
+                                    @enderror
+                                </span>
+                            </div>
+                       </div>
 
+                  </div>
                 </td>
                
             </tr>

@@ -91,6 +91,14 @@ class PurchaseController extends Controller
 
 
     }
+     public function update_purchase_status(Request $request, $id)
+            {
+                $purchase = PurchaseOrder::findOrFail($id);
+                $purchase->status = $request->status;
+                $purchase->save();
+
+                return redirect()->back()->with('success', 'Status updated successfully!');
+            }
 
 
 }

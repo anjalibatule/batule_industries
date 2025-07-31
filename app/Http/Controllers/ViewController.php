@@ -7,6 +7,8 @@ use App\Models\Contact;
 use App\Models\Invoice;
 use  App\Models\InvoiceDescr;
 use App\Models\PurchaseOrder;
+use App\Models\Bank;
+
 
 
 use Illuminate\Http\Request;
@@ -102,6 +104,30 @@ class ViewController extends Controller
           $contact = Contact::find(1);
           $companies = Company::all();
           return view('invoice_update',['invoices'=>$invoices,'contact'=>$contact,'companies' =>$companies]);
+    }
+       public function bank_detail()
+    {
+        // dd(1);
+        $bank = Bank::find(1);
+        return view('bank',['bank'=> $bank]);
+    }
+     public function bank_update(Request $request,$id)
+    {
+       $bank= Bank::find($id);
+         $bank->bank_name = $request->bank_name;
+           $bank->address = $request->address;
+         $bank->account = $request->account;
+         $bank->account_branch = $request->account_branch;
+         $bank->ifsc = $request->ifsc ?? null;
+         $bank->micr = $request->micr ?? null;
+         $bank->swif = $request->swif ?? null;
+         if($bank->save()){
+            return back()->with('success','Bank details updated successfully');
+              
+         }
+         else{
+            return back()->with('error','Bank details not updated');
+         }
     }
 }
 

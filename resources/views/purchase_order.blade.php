@@ -39,7 +39,7 @@
                         <th>CGST</th>
                         <th>SGST</th>
                         <th>Total Amount</th>   
-                        
+                        <th>Status</th>
                         <th></th>
                     </tr>
                     @foreach($purchase as $pur)
@@ -54,7 +54,17 @@
                          <td>{{$pur->sgst}}</td>
 
                          <td>{{$pur->total_amount}}</td>
-                       
+                        <td>
+                            <form action="{{ route('update_purchase_status', $pur->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <select name="status" class="form-control" onchange="this.form.submit()">
+                                    <option value="1" {{ old('status', $pur->status) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ old('status', $pur->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                                </select>
+                            </form>
+                        
+                           </td>
                          <td><a href="{{route('update_purchase',$pur->id)}}"><i class="fas fa-edit text-success"></i></a></td>
                         
                     </tr>
