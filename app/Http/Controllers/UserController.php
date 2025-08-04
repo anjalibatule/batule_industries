@@ -78,8 +78,6 @@ class UserController extends Controller
 
          public function logout(Request $request){
             Auth::logout();
-            $request->session()->invalidate();
-             $request->session()->regenerateTokens(); 
              return redirect('login')->with('success', 'You are logout successfully!');
          }
 

@@ -134,7 +134,7 @@
     <tr>
         
          <td colspan="8" >
-            <b style="margin-left:55%;">Tax/Other Charges</b>  <b style="margin-left:20%;">Result</b>
+            <b style="margin-left:55%;">Tax/Other Charges</b>  <b style="margin-left:19%;">Result</b>
             @if($invoice->igst==0)
              <p style="margin-left:55%;">CGST On  <span style="margin-left:20px;"> {{$invoice->total_price}}</span><span style="margin-left:10px;"> @  </span><span style="margin-left:10px;">9.00 %</span><span style="margin-left:30px;">{{$invoice->cgst}}</span></p>
              <p style="margin-left:55%;">SGST On  <span style="margin-left:20px;"> {{$invoice->total_price}}</span><span style="margin-left:10px;"> @  </span><span style="margin-left:10px;">9.00 %</span><span style="margin-left:30px;">{{$invoice->sgst}}</span></p>
@@ -146,7 +146,7 @@
    
     <tr>
         <td colspan="8">
-            <p style="margin-left:35%;margin-bottom:0;margin-top:0;"><b>TOTAL : </b>                  <b style="margin-left:40%;">Rs.</b>     <b style="margin-left:33%;">{{$invoice->total_price}}</b></p>
+            <p style="margin-left:55%;margin-bottom:0;margin-top:0;"><b>TOTAL : </b>                  <b style="margin-left:20%;">Rs.</b>     <b style="margin-left:32%;">{{$invoice->total_price}}</b></p>
         </td>
     </tr>
      <tr>
@@ -155,18 +155,18 @@
         </td>
         <td colspan="4">
              @if($invoice->igst==0)
-             <p ><b style="margin-left:20%;margin-top:0;">CGST On @</b><span style="margin-left:10px;">9.00 %</span><b style="margin-left:30px;">{{$invoice->cgst}}</b></p>
-             <p ><b style="margin-left:20%;margin-bottom:0">SGST On @</b><span style="margin-left:10px;">9.00 %</span><b style="margin-left:30px;">{{$invoice->sgst}}</b></p>
+             <p ><b style="margin-left:14%;margin-top:0;">CGST On @</b><span style="margin-left:10px;">9.00 %</span><b style="margin-left:32%;">{{$invoice->cgst}}</b></p>
+             <p ><b style="margin-left:14%;margin-bottom:0">SGST On @</b><span style="margin-left:10px;">9.00 %</span><b style="margin-left:32%;">{{$invoice->sgst}}</b></p>
             @else
-                <p style="margin-left:20%;margin-top:0;margin-bottom:0;"><b>IGST On @</b><span style="margin-left:10px;">18.00 %</span><b style="margin-left:30px;">{{$invoice->igst}}</b></p>
+                <p><b style="margin-left:14%;margin-top:0;margin-bottom:0;">IGST On @</b><span style="margin-left:10px;">18.00 %</span><b style="margin-left:32%;">{{$invoice->igst}}</b></p>
             @endif
         </td>
 
     </tr>
     <tr>
-        <td rowspan="4" colspan="4">  <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code" width="200" style="margin:0 24%;"><br></td>
+        <td rowspan="4" colspan="4">  <img src="data:image/png;base64,{{ $qrCode }}" alt="QR Code" width="200" style="margin:0 18%;"><br></td>
         <td colspan="4">
-            <b style="margin-left:20%;">TOTAL AMOUNT : </b> <b style="margin-left:20%;">{{$invoice->total_amount}}</b> 
+            <b style="margin-left:14%;">TOTAL AMOUNT : </b> <b style="margin-left:34%;">{{$invoice->total_amount}}</b> 
         </td>
     </tr>
     <tr>

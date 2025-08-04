@@ -48,7 +48,7 @@
                     <h3 class="text-primary text-center mt-3">Login Page</h3>
                     <div class="col-12 mt-1">
                          <label for="email" class="form-label">Email Id:</label><br>
-                        <input type="email" id="name" class="form-control {{$errors->first('email')?'input-error':''}}"  value="{{old('email')}}" placeholder="Enter Your Email Id" name="email" required>
+                        <input type="email" id="name" class="form-control {{$errors->first('email')?'input-error':''}}"  value="{{old('email')}}" placeholder="Enter Your Email Id" name="email" required><i class="fa-solid fa-user"></i>
                     </div>
                     <div class="col-12 mt-1">
                          <span class="text-danger">
@@ -75,6 +75,9 @@
                     </div>
                     <div class="col-12 mt-2">  
                         <p>Not have an account? <a href="{{route('register')}}" class="text-decoration-none mt-2 mb-5" style="margin-left:5px;">Sign Up Here</a></p>  
+                    </div>
+                     <div class="col-12 mb-2">  
+                      <a href="{{route('password.request')}}" class="text-decoration-none mt-2 mb-5" style="margin-left:5px;">Forgot Password</a>
                     </div>
                   
                 </form>

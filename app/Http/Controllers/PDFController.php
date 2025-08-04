@@ -50,4 +50,23 @@ class PDFController extends Controller
         $pdf = Pdf::loadView('pdf_invoice', compact('invoice','contact','bank','qrCode'));
         return $pdf->download('invoice.pdf'); // Force download
     }
+
+      public function gst_sale_pdf(Request $request)
+        {
+            $search = $request->search;
+
+            $invoices = Invoice::with('company')
+                ->where('status',1)
+                  ->where(function ($query) use ($search) {
+                        $query->where('invoice_number', 'like', "%$search%")
+                            ->orWhere('invoice_date', 'like', "%$search%")
+                            ->orWhereRelation('company', 'company_name', 'like', "%$search%")
+                            ->orWhereRelation('company', 'gst_no', 'like', "%$search%");
+                    })
+                                ->orderBy('invoice_date', 'asc')
+                ->get();
+
+            $pdf = Pdf::loadView('search_pdf', compact('invoices', 'search'));
+            return $pdf->stream('gst.pdf'); // Open in browser
+        }
 }

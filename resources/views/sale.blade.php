@@ -59,9 +59,14 @@
                         
                     </tr>
                     @endforeach
-                  
+                     
                     {{$invoices->links()}}
+
+                     
                  </table>
+                    @if(request('search'))
+                           <a href="{{route('gst_sale_pdf',request('search'))}}" name="search" class="btn btn-danger">Download PDF</a>
+                   @endif
                 
             </div>   
           </div>    

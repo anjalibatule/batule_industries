@@ -9,6 +9,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 
@@ -27,6 +28,12 @@ Route::view('/register','auth.register')->name('register');
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('register/store',[UserController::class,'store'])->name('store');
 Route::post('login/custom_login',[UserController::class,'custom_login'])->name('custom_login');
+// Forgot Password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
  Route::view('/',[ViewController::class,'index'])->name('home');
 
@@ -78,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('search_inactive_status',[SearchController::class,'search_inactive_status'])->name('search_inactive_status');
            Route::get('search_payment',[SearchController::class,'search_payment'])->name('search_payment');
            Route::get('search_inactive_payment',[SearchController::class,'search_inactive_payment'])->name('search_inactive_payment');
+            Route::get('/search_pdf_view/{search}', [PDFController::class, 'gst_sale_pdf'])->name('gst_sale_pdf');
 
         //  purchase order
          Route::get('purchase_order',[ViewController::class,'purchase_order'])->name('purchase_order');
