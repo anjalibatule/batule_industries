@@ -8,6 +8,8 @@ use App\Models\Invoice; // Example model
 use App\Models\Contact; // Example model
 use App\Models\Bank; // Example model
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Models\PurchaseOrder; // Example model
+
 
 class PDFController extends Controller
 {
@@ -58,15 +60,43 @@ class PDFController extends Controller
             $invoices = Invoice::with('company')
                 ->where('status',1)
                   ->where(function ($query) use ($search) {
-                        $query->where('invoice_number', 'like', "%$search%")
-                            ->orWhere('invoice_date', 'like', "%$search%")
-                            ->orWhereRelation('company', 'company_name', 'like', "%$search%")
-                            ->orWhereRelation('company', 'gst_no', 'like', "%$search%");
+                        $query->Where('invoice_date', 'like', "%$search%");
+
                     })
-                                ->orderBy('invoice_date', 'asc')
+                ->orderBy('invoice_date', 'asc')
                 ->get();
 
             $pdf = Pdf::loadView('search_pdf', compact('invoices', 'search'));
-            return $pdf->stream('gst.pdf'); // Open in browser
+            return $pdf->stream('gst_sale.pdf'); // Open in browser
+        }
+          public function gst_purchase_pdf(Request $request)
+        {
+            $search = $request->search;
+
+            $purchases = PurchaseOrder::with('company')
+                ->where('status',1)
+                  ->where(function ($query) use ($search) {
+                        $query->Where('po_date', 'like', "%$search%");
+                    })
+                ->orderBy('po_date', 'asc')
+                ->get();
+
+            $pdf = Pdf::loadView('search_pdf', compact('purchases', 'search'));
+            return $pdf->stream('gst_purchase.pdf'); // Open in browser
+        }
+        public function company_statement_pdf(Request $request)
+        {
+            $search = $request->search;
+
+             $company = Invoice::with('company')
+              
+                 
+                       -> WhereRelation('company', 'gst_no', 'like', "%$search%")
+                 
+                ->orderBy('invoice_date', 'asc')
+                ->get();
+
+            $pdf = Pdf::loadView('search_pdf', compact('company', 'search'));
+            return $pdf->stream('company_statement.pdf'); // Open in browser
         }
 }

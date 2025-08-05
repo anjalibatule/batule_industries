@@ -64,8 +64,29 @@
 
                      
                  </table>
-                    @if(request('search'))
+                   @php
+                      use Illuminate\Support\Str;
+
+                     $isDateMatch = $invoices->contains(function ($inv) {
+                        return Str::startsWith($inv->invoice_date, request('search'));
+                        // or: return strpos($inv->invoice_date, request('search')) === 0;
+                     });
+
+
+                     $isGstMatch = $invoices->contains(function ($inv) {
+                        return $inv->company && $inv->company->gst_no === request('search');
+                     });
+                  @endphp
+
+                    @if($isDateMatch)
+                         <div class="text-center mt-3">
                            <a href="{{route('gst_sale_pdf',request('search'))}}" name="search" class="btn btn-danger">Download PDF</a>
+                         </div>
+                    @elseif($isGstMatch)
+                        <div class="text-center mt-3"> 
+                           <a href="{{route('company_statement_pdf',request('search'))}}" name="search" class="btn btn-danger">Download Company Statement</a>
+                        </div>
+                   @else
                    @endif
                 
             </div>   

@@ -31,8 +31,8 @@ class ViewController extends Controller
           return view('sale',['invoices'=>$invoices]);
     }
     public function purchase_order(){
-         $purchase = PurchaseOrder::with('company')->orderBy('created_at','desc')->paginate(8);
-       return view('purchase_order',['purchase'=>$purchase]);
+         $purchases = PurchaseOrder::with('company')->orderBy('created_at','desc')->paginate(8);
+       return view('purchase_order',['purchase'=>$purchases]);
     }
      public function status()
     {

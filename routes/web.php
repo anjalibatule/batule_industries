@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update_company/{id}/update_company_details',[CompanyController::class,'update_company_details'])->name('update_company_details');
         Route::put('/update_company_status/{id}', [CompanyController::class, 'update_company_status'])->name('update_company_status');
         Route::get('inactive_company',[CompanyController::class,'inactive_company'])->name('inactive_company');
+        Route::get('/company_statement_pdf_view/{search}', [PDFController::class, 'company_statement_pdf'])->name('company_statement_pdf');
+
 
 
        //contact detail      
@@ -85,7 +87,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('search_inactive_status',[SearchController::class,'search_inactive_status'])->name('search_inactive_status');
            Route::get('search_payment',[SearchController::class,'search_payment'])->name('search_payment');
            Route::get('search_inactive_payment',[SearchController::class,'search_inactive_payment'])->name('search_inactive_payment');
-            Route::get('/search_pdf_view/{search}', [PDFController::class, 'gst_sale_pdf'])->name('gst_sale_pdf');
+            Route::get('/search_sale_pdf_view/{search}', [PDFController::class, 'gst_sale_pdf'])->name('gst_sale_pdf');
 
         //  purchase order
          Route::get('purchase_order',[ViewController::class,'purchase_order'])->name('purchase_order');
@@ -95,6 +97,7 @@ Route::middleware(['auth'])->group(function () {
          Route::get('update_purchase/{id}',[PurchaseController::class,'update_purchase'])->name('update_purchase');
        Route::put('update_purchase/{id}/edit_purchase', [PurchaseController::class, 'edit_purchase'])->name('edit_purchase');
        Route::put('/update_purchase_status/{id}', [PurchaseController::class, 'update_purchase_status'])->name('update_purchase_status');
+         Route::get('/search_purchase_pdf_view/{search}', [PDFController::class, 'gst_purchase_pdf'])->name('gst_purchase_pdf');
 
 
 

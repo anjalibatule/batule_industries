@@ -23,7 +23,7 @@ class SearchController extends Controller
         ->where(function ($query) use ($search) {
             $query->where('invoice_number', 'like', "%$search%")
                 ->orWhere('invoice_date', 'like', "%$search%")
-                ->orWhereRelation('company', 'company_name', 'like', "%$search%")
+                // ->orWhereRelation('company', 'company_name', 'like', "%$search%")
                 ->orWhereRelation('company', 'gst_no', 'like', "%$search%")
         ;})
         ->orderBy('invoice_number', 'desc')

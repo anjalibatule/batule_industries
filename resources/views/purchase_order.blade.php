@@ -74,6 +74,20 @@
                     {{$purchase->links()}}
                  </table>
                 
+                  @php
+                   use Illuminate\Support\Str;
+
+                     $isDateMatch = $purchase->contains(function ($pur) {
+                        return Str::startsWith($pur->po_date, request('search'));
+                     });
+   
+               @endphp
+
+               @if($isDateMatch)
+                  <div class="text-center mt-3">
+                     <a href="{{ route('gst_purchase_pdf', request('search'))}}" class="btn btn-danger">Download PDF</a>
+                  </div>
+               @endif
             </div>       
         </div>
       </div>
